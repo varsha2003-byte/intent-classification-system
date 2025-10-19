@@ -4,23 +4,6 @@
 
 > A production-ready NLP system for classifying customer intent from WhatsApp-style multi-turn conversations using advanced zero-shot classification with pattern-based intelligence.
 
-##  Table of Contents
-- [Overview](#-overview)
-- [Key Features](#-key-features)
-- [Demo](#-demo)
-- [Architecture](#-architecture)
-- [Quick Start](#-quick-start)
-- [Usage](#-usage)
-- [Model Selection](#-model-selection)
-- [Performance Metrics](#-performance-metrics)
-- [Technical Deep Dive](#-technical-deep-dive)
-- [Output Examples](#-output-examples)
-- [Limitations & Future Work](#-limitations--future-work)
-- [Contributing](#-contributing)
-- [License](#-license)
-
----
-
 ##  Overview
 
 This system processes **multi-turn conversations** between users and business agents to classify the **final customer intent** into one of five categories:
