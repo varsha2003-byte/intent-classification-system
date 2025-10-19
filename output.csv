@@ -1,11 +1,11 @@
 conversation_id,predicted_intent,rationale
-conv_001,Book Appointment,"The conversation was confidently classified as 'Book Appointment' (confidence: 0.75). User explicitly requested scheduling/viewing with keywords: visit, site visit, this week"
-conv_002,Follow-Up,The conversation was confidently classified as 'Follow-Up' (confidence: 0.79). User is following up on a previous conversation
-conv_003,Pricing Negotiation,"The conversation was confidently classified as 'Pricing Negotiation' (confidence: 0.75). Discussion centers on pricing/budget: budget, discount, max"
-conv_004,Support Request,"The conversation was confidently classified as 'Support Request' (confidence: 0.75). User needs assistance with: help, error"
-conv_005,Follow-Up,"The conversation was confidently classified as 'Follow-Up' (confidence: 0.97). User is checking status of previous interaction: following up, any update"
-conv_006,Book Appointment,"The conversation was confidently classified as 'Book Appointment' (confidence: 0.75). User explicitly requested scheduling/viewing with keywords: when can, tomorrow, available"
-conv_007,Follow-Up,The conversation was tentatively classified as 'Follow-Up' (confidence: 0.50). User is following up on a previous conversation Note: 'Support Request' was also considered (score: 0.39)
-conv_008,Pricing Negotiation,"The conversation was confidently classified as 'Pricing Negotiation' (confidence: 0.75). Discussion centers on pricing/budget: price, cheaper, can you do"
-conv_009,Product Inquiry,"The conversation was confidently classified as 'Product Inquiry' (confidence: 0.75). User is seeking information, indicated by: looking for, what, available"
-conv_010,Book Appointment,"The conversation was confidently classified as 'Book Appointment' (confidence: 0.75). User explicitly requested scheduling/viewing with keywords: schedule, viewing"
+conv_001,Book Appointment,The user requested a site visit after discussing property requirements.
+conv_002,Follow-Up,The user followed up on a previously discussed property or request.
+conv_003,Pricing Negotiation,The user requested a discount after discussing the property price.
+conv_004,Support Request,The user reported a technical issue and requested assistance.
+conv_005,Follow-Up,The user is following up on a previous property inquiry.
+conv_006,Book Appointment,The user indicated readiness to proceed with a property viewing.
+conv_007,Follow-Up,The user followed up on a previously discussed property or request.
+conv_008,Pricing Negotiation,The user indicated the price was high and sought better pricing options.
+conv_009,Product Inquiry,The user is exploring available properties and seeking information.
+conv_010,Book Appointment,The user requested a site visit after discussing property requirements.

@@ -20,25 +20,34 @@ intent_classifier = pipeline(
 print("Model loaded successfully!")
 
 def predict_intent(conversation_text, key_signals=None):
+    """
+    Predicts intent using enhanced zero-shot classification with context enrichment.
     
+    Args:
+        conversation_text: Preprocessed conversation string
+        key_signals: Dictionary of detected keyword signals (optional)
     
-    #Extract the most recent user messages for focused analysis
+    Returns:
+        tuple: (predicted_intent, detailed_rationale)
+    """
+    
+    # Step 1: Extract the most recent user messages for focused analysis
     parts = conversation_text.split("[FINAL USER INTENT]:")
     if len(parts) > 1:
         final_context = parts[-1].strip()
     else:
         final_context = conversation_text
     
-    # Use enriched intent labels with descriptions
+    # Step 2: Use enriched intent labels with descriptions
     enriched_labels = [
         f"{intent}: {desc}" 
         for intent, desc in INTENT_DEFINITIONS.items()
     ]
     
-    # Create a focused input for classification
+    # Step 3: Create a focused input for classification
     classification_input = f"Customer's final request: {final_context}"
     
-    #Run zero-shot classification with enhanced template
+    # Step 4: Run zero-shot classification with enhanced template
     result = intent_classifier(
         classification_input,
         list(INTENT_DEFINITIONS.keys()),
@@ -46,13 +55,13 @@ def predict_intent(conversation_text, key_signals=None):
         multi_label=False
     )
     
-    #Get predictions
+    # Step 5: Get predictions
     top_intent = result["labels"][0]
     top_score = result["scores"][0]
     second_intent = result["labels"][1] if len(result["labels"]) > 1 else None
     second_score = result["scores"][1] if len(result["scores"]) > 1 else 0
     
-    #Apply rule-based boosting for clear patterns
+    # Step 6: Apply rule-based boosting for clear patterns
     adjusted_intent, adjusted_score = apply_pattern_boosting(
         conversation_text, 
         top_intent, 
@@ -60,7 +69,7 @@ def predict_intent(conversation_text, key_signals=None):
         result
     )
     
-    # Generate intelligent rationale
+    # Step 7: Generate intelligent rationale
     rationale = generate_rationale(
         conversation_text,
         adjusted_intent,
@@ -72,7 +81,10 @@ def predict_intent(conversation_text, key_signals=None):
     return adjusted_intent, rationale
 
 def apply_pattern_boosting(text, predicted_intent, score, full_result):
-    
+    """
+    Apply pattern-based rules to boost confidence for clear-cut cases.
+    This helps override low-confidence predictions when strong signals exist.
+    """
     text_lower = text.lower()
     
     # Define strong signal patterns for each intent
@@ -145,87 +157,63 @@ def apply_pattern_boosting(text, predicted_intent, score, full_result):
 
 def generate_rationale(text, intent, score, second_intent, second_score):
     """
-    Generate human-readable rationale based on classification results.
+    Generate concise, human-readable rationale in the required format.
+    Format: "The user [action] after [context]."
     """
     text_lower = text.lower()
     
-    # Confidence level description
-    if score > 0.7:
-        confidence_text = "confidently classified"
-    elif score > 0.55:
-        confidence_text = "classified"
-    else:
-        confidence_text = "tentatively classified"
-    
-    rationale_parts = []
-    
-    # Intent-specific reasoning with keyword detection
+    # Intent-specific concise reasoning
     if intent == "Book Appointment":
-        keywords = find_keywords(text_lower, [
-            "visit", "appointment", "schedule", "meet", "viewing", 
-            "show", "tour", "site visit", "when can", "tomorrow",
-            "this week", "next week", "available"
-        ])
-        if keywords:
-            rationale_parts.append(f"User explicitly requested scheduling/viewing with keywords: {', '.join(keywords[:3])}")
+        if "visit" in text_lower or "viewing" in text_lower:
+            return "The user requested a site visit after discussing property requirements."
+        elif "appointment" in text_lower or "schedule" in text_lower:
+            return "The user requested to schedule an appointment to view the property."
+        elif "meet" in text_lower:
+            return "The user expressed interest in meeting to discuss the property."
         else:
-            rationale_parts.append("Conversation indicates readiness to proceed with in-person meeting")
+            return "The user indicated readiness to proceed with a property viewing."
     
     elif intent == "Product Inquiry":
-        keywords = find_keywords(text_lower, [
-            "looking for", "tell me", "what", "information", "details", 
-            "available", "options", "interested", "features", "amenities"
-        ])
-        if keywords:
-            rationale_parts.append(f"User is seeking information, indicated by: {', '.join(keywords[:3])}")
+        if "looking for" in text_lower:
+            return "The user is exploring available properties and seeking information."
+        elif "tell me" in text_lower or "what" in text_lower:
+            return "The user asked for detailed information about property features."
+        elif "amenities" in text_lower or "features" in text_lower:
+            return "The user inquired about property amenities and specifications."
         else:
-            rationale_parts.append("User is exploring options and gathering product information")
+            return "The user is gathering information about available properties."
     
     elif intent == "Pricing Negotiation":
-        keywords = find_keywords(text_lower, [
-            "budget", "price", "cost", "expensive", "cheaper", "discount", 
-            "negotiate", "afford", "max", "can you do"
-        ])
-        if keywords:
-            rationale_parts.append(f"Discussion centers on pricing/budget: {', '.join(keywords[:3])}")
+        if "discount" in text_lower:
+            return "The user requested a discount after discussing the property price."
+        elif "negotiate" in text_lower:
+            return "The user expressed interest in negotiating the property price."
+        elif "budget" in text_lower:
+            return "The user discussed budget constraints and pricing expectations."
+        elif "cheaper" in text_lower or "expensive" in text_lower:
+            return "The user indicated the price was high and sought better pricing options."
         else:
-            rationale_parts.append("Conversation focused on financial aspects and pricing")
+            return "The user engaged in price negotiation after reviewing the property."
     
     elif intent == "Support Request":
-        keywords = find_keywords(text_lower, [
-            "problem", "issue", "help", "not working", "error", 
-            "complaint", "fix", "broken", "wrong"
-        ])
-        if keywords:
-            rationale_parts.append(f"User needs assistance with: {', '.join(keywords[:3])}")
+        if "error" in text_lower or "not working" in text_lower:
+            return "The user reported a technical issue and requested assistance."
+        elif "problem" in text_lower or "issue" in text_lower:
+            return "The user encountered a problem and asked for help resolving it."
+        elif "help" in text_lower:
+            return "The user requested support to resolve an ongoing issue."
         else:
-            rationale_parts.append("User is seeking help or reporting an issue")
+            return "The user needs assistance with a service-related concern."
     
     elif intent == "Follow-Up":
-        keywords = find_keywords(text_lower, [
-            "follow up", "following up", "any update", "status", 
-            "heard back", "previous", "earlier", "last time"
-        ])
-        if keywords:
-            rationale_parts.append(f"User is checking status of previous interaction: {', '.join(keywords[:2])}")
+        if "following up" in text_lower or "follow up" in text_lower:
+            return "The user is following up on a previous property inquiry."
+        elif "any update" in text_lower or "status" in text_lower:
+            return "The user checked the status of their earlier request."
+        elif "previous" in text_lower or "last time" in text_lower:
+            return "The user referenced a prior conversation and requested an update."
         else:
-            rationale_parts.append("User is following up on a previous conversation")
+            return "The user followed up on a previously discussed property or request."
     
-    # Mention alternative if close
-    if second_score > 0.25 and abs(score - second_score) < 0.25:
-        rationale_parts.append(f"Note: '{second_intent}' was also considered (score: {second_score:.2f})")
-    
-    # Combine rationale
-    final_rationale = f"The conversation was {confidence_text} as '{intent}' (confidence: {score:.2f}). "
-    if rationale_parts:
-        final_rationale += " ".join(rationale_parts)
-    
-    return final_rationale
-
-def find_keywords(text, keywords):
-    """Find which keywords from a list appear in the text"""
-    found = []
-    for kw in keywords:
-        if kw in text:
-            found.append(kw)
-    return found
+    # Fallback
+    return f"The user's conversation indicates a {intent.lower()} intent."
