@@ -1,0 +1,52 @@
+[
+  {
+    "conversation_id": "conv_001",
+    "predicted_intent": "Book Appointment",
+    "rationale": "The conversation was confidently classified as 'Book Appointment' (confidence: 0.75). User explicitly requested scheduling/viewing with keywords: visit, site visit, this week"
+  },
+  {
+    "conversation_id": "conv_002",
+    "predicted_intent": "Follow-Up",
+    "rationale": "The conversation was confidently classified as 'Follow-Up' (confidence: 0.79). User is following up on a previous conversation"
+  },
+  {
+    "conversation_id": "conv_003",
+    "predicted_intent": "Pricing Negotiation",
+    "rationale": "The conversation was confidently classified as 'Pricing Negotiation' (confidence: 0.75). Discussion centers on pricing/budget: budget, discount, max"
+  },
+  {
+    "conversation_id": "conv_004",
+    "predicted_intent": "Support Request",
+    "rationale": "The conversation was confidently classified as 'Support Request' (confidence: 0.75). User needs assistance with: help, error"
+  },
+  {
+    "conversation_id": "conv_005",
+    "predicted_intent": "Follow-Up",
+    "rationale": "The conversation was confidently classified as 'Follow-Up' (confidence: 0.97). User is checking status of previous interaction: following up, any update"
+  },
+  {
+    "conversation_id": "conv_006",
+    "predicted_intent": "Book Appointment",
+    "rationale": "The conversation was confidently classified as 'Book Appointment' (confidence: 0.75). User explicitly requested scheduling/viewing with keywords: when can, tomorrow, available"
+  },
+  {
+    "conversation_id": "conv_007",
+    "predicted_intent": "Follow-Up",
+    "rationale": "The conversation was tentatively classified as 'Follow-Up' (confidence: 0.50). User is following up on a previous conversation Note: 'Support Request' was also considered (score: 0.39)"
+  },
+  {
+    "conversation_id": "conv_008",
+    "predicted_intent": "Pricing Negotiation",
+    "rationale": "The conversation was confidently classified as 'Pricing Negotiation' (confidence: 0.75). Discussion centers on pricing/budget: price, cheaper, can you do"
+  },
+  {
+    "conversation_id": "conv_009",
+    "predicted_intent": "Product Inquiry",
+    "rationale": "The conversation was confidently classified as 'Product Inquiry' (confidence: 0.75). User is seeking information, indicated by: looking for, what, available"
+  },
+  {
+    "conversation_id": "conv_010",
+    "predicted_intent": "Book Appointment",
+    "rationale": "The conversation was confidently classified as 'Book Appointment' (confidence: 0.75). User explicitly requested scheduling/viewing with keywords: schedule, viewing"
+  }
+]

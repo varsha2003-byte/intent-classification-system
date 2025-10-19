@@ -1,0 +1,102 @@
+[
+  {
+    "conversation_id": "conv_001",
+    "messages": [
+      {"sender": "user", "text": "Hi, I'm looking for a 2BHK in Dubai"},
+      {"sender": "agent", "text": "Great! Any specific area in mind?"},
+      {"sender": "user", "text": "Preferably Marina or JVC"},
+      {"sender": "agent", "text": "What's your budget?"},
+      {"sender": "user", "text": "Max 120k. Can we do a site visit this week?"}
+    ]
+  },
+  {
+    "conversation_id": "conv_002",
+    "messages": [
+      {"sender": "user", "text": "What properties do you have available?"},
+      {"sender": "agent", "text": "We have apartments, villas, and penthouses. What are you interested in?"},
+      {"sender": "user", "text": "Tell me more about the 3BHK apartments"},
+      {"sender": "agent", "text": "They range from 1500-2000 sqft with modern amenities"},
+      {"sender": "user", "text": "What amenities are included?"}
+    ]
+  },
+  {
+    "conversation_id": "conv_003",
+    "messages": [
+      {"sender": "user", "text": "Hi, I saw a property listed for 150k"},
+      {"sender": "agent", "text": "Yes, that's a beautiful 3BHK in Downtown"},
+      {"sender": "user", "text": "That's a bit over my budget. Any room for negotiation?"},
+      {"sender": "agent", "text": "Let me check with the owner. What's your budget?"},
+      {"sender": "user", "text": "I can go up to 135k maximum. Can you offer a discount?"}
+    ]
+  },
+  {
+    "conversation_id": "conv_004",
+    "messages": [
+      {"sender": "user", "text": "Hello, I booked a property last week but haven't received confirmation"},
+      {"sender": "agent", "text": "I apologize for the delay. Can you share your booking ID?"},
+      {"sender": "user", "text": "It's BK12345"},
+      {"sender": "agent", "text": "Let me look that up for you"},
+      {"sender": "user", "text": "Also, the payment gateway showed an error. Can you help?"}
+    ]
+  },
+  {
+    "conversation_id": "conv_005",
+    "messages": [
+      {"sender": "user", "text": "Hi, I contacted you last month about a villa in Palm Jumeirah"},
+      {"sender": "agent", "text": "Yes, I remember. How can I help you today?"},
+      {"sender": "user", "text": "Just following up - any updates on availability?"},
+      {"sender": "agent", "text": "Let me check the current status"},
+      {"sender": "user", "text": "I'm still interested if it's available"}
+    ]
+  },
+  {
+    "conversation_id": "conv_006",
+    "messages": [
+      {"sender": "user", "text": "Do you have any studios available?"},
+      {"sender": "agent", "text": "Yes, we have several. What's your preferred location?"},
+      {"sender": "user", "text": "Near metro stations, furnished preferably"},
+      {"sender": "agent", "text": "We have options in Business Bay and JLT"},
+      {"sender": "user", "text": "Great! When can I view them? I'm free tomorrow"}
+    ]
+  },
+  {
+    "conversation_id": "conv_007",
+    "messages": [
+      {"sender": "user", "text": "I need help with my lease agreement"},
+      {"sender": "agent", "text": "What seems to be the issue?"},
+      {"sender": "user", "text": "There's an error in the tenant name"},
+      {"sender": "agent", "text": "I can help you correct that. Can you send the document?"},
+      {"sender": "user", "text": "Yes, sending now. How long will the correction take?"}
+    ]
+  },
+  {
+    "conversation_id": "conv_008",
+    "messages": [
+      {"sender": "user", "text": "What's the price range for 1BHK in Marina?"},
+      {"sender": "agent", "text": "Typically between 75k to 95k annually"},
+      {"sender": "user", "text": "That's quite high. Any cheaper options?"},
+      {"sender": "agent", "text": "We have some in JVC starting at 65k"},
+      {"sender": "user", "text": "65k is still stretching it. Can you do 60k?"}
+    ]
+  },
+  {
+    "conversation_id": "conv_009",
+    "messages": [
+      {"sender": "user", "text": "Hi, I'm relocating to Dubai for work"},
+      {"sender": "agent", "text": "Welcome! When are you planning to move?"},
+      {"sender": "user", "text": "Next month. Looking for family-friendly areas"},
+      {"sender": "agent", "text": "Arabian Ranches and Jumeirah Village are great options"},
+      {"sender": "user", "text": "What kind of properties are available there?"}
+    ]
+  },
+  {
+    "conversation_id": "conv_010",
+    "messages": [
+      {"sender": "user", "text": "I scheduled a viewing for today but can't make it"},
+      {"sender": "agent", "text": "No problem. Would you like to reschedule?"},
+      {"sender": "user", "text": "Yes please. Can we do it this Saturday?"},
+      {"sender": "agent", "text": "Let me check availability"},
+      {"sender": "user", "text": "10 AM works best for me if possible"}
+    ]
+  }
+]
