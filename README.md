@@ -431,13 +431,7 @@ black --check .
  
  
 
-## 🙏 Acknowledgments
-
-- **Hugging Face** for the transformers library and model hosting
-- **Meta AI** for the BART model
-- **PyTorch** team for the deep learning framework
-- The open-source NLP community for inspiration and support
-
+b
  
 
  
