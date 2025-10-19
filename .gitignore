@@ -1,6 +1,28 @@
-"venv/" 
-"__pycache__/" 
-"*.pyc" 
-"output.json" 
-"output.csv" 
-".DS_Store" 
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Output files
+output.json
+output.csv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# OS
+Thumbs.db
