@@ -25,29 +25,29 @@ def predict_intent(conversation_text, key_signals=None):
     
     Args:
         conversation_text: Preprocessed conversation string
-        key_signals: Dictionary of detected keyword signals (optional)
+        key_signals: Dictionary of detected keyword signals 
     
     Returns:
         tuple: (predicted_intent, detailed_rationale)
     """
     
-    # Step 1: Extract the most recent user messages for focused analysis
+    # Extract the most recent user messages for focused analysis
     parts = conversation_text.split("[FINAL USER INTENT]:")
     if len(parts) > 1:
         final_context = parts[-1].strip()
     else:
         final_context = conversation_text
     
-    # Step 2: Use enriched intent labels with descriptions
+    # Use enriched intent labels with descriptions
     enriched_labels = [
         f"{intent}: {desc}" 
         for intent, desc in INTENT_DEFINITIONS.items()
     ]
     
-    # Step 3: Create a focused input for classification
+    # Create a focused input for classification
     classification_input = f"Customer's final request: {final_context}"
     
-    # Step 4: Run zero-shot classification with enhanced template
+    # Run zero-shot classification with enhanced template
     result = intent_classifier(
         classification_input,
         list(INTENT_DEFINITIONS.keys()),
@@ -55,13 +55,13 @@ def predict_intent(conversation_text, key_signals=None):
         multi_label=False
     )
     
-    # Step 5: Get predictions
+    # Get predictions
     top_intent = result["labels"][0]
     top_score = result["scores"][0]
     second_intent = result["labels"][1] if len(result["labels"]) > 1 else None
     second_score = result["scores"][1] if len(result["scores"]) > 1 else 0
     
-    # Step 6: Apply rule-based boosting for clear patterns
+    # Apply rule-based boosting for clear patterns
     adjusted_intent, adjusted_score = apply_pattern_boosting(
         conversation_text, 
         top_intent, 
@@ -69,7 +69,7 @@ def predict_intent(conversation_text, key_signals=None):
         result
     )
     
-    # Step 7: Generate intelligent rationale
+    # Generate intelligent rationale
     rationale = generate_rationale(
         conversation_text,
         adjusted_intent,
@@ -81,10 +81,7 @@ def predict_intent(conversation_text, key_signals=None):
     return adjusted_intent, rationale
 
 def apply_pattern_boosting(text, predicted_intent, score, full_result):
-    """
-    Apply pattern-based rules to boost confidence for clear-cut cases.
-    This helps override low-confidence predictions when strong signals exist.
-    """
+    
     text_lower = text.lower()
     
     # Define strong signal patterns for each intent
